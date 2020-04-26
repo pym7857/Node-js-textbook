@@ -10,7 +10,7 @@ module.exports = (passport) => {
         usernameField: 'email',     // req.body.email에 이메일이 담겨 들어온다.      -> 'email'
         passwordField: 'password',  // req.body.password에 비밀번호가 담겨 들어온다. -> 'password'
     }, async (email, password, done) => {   /* LocalStrategy의 두번째 인자 : 실제 전략을 수행하는 async 함수 */
-                                            // 세번째 인자인 done함수는 passport.authenticate의 콜백 함수( (authError, user, info) )    -> 그림 9.9
+                                            // 세번째 인자인 done함수는 (routes/auth.js의)passport.authenticate의 콜백 함수( (authError, user, info) )    -> 그림 9.9
         try {
             const exUser = await User.findOne({ where: { email } });   // 데이터베이스에서 일치하는 이메일이 있는지 찾는다.
             if (exUser) {
