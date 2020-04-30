@@ -13,10 +13,12 @@ const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const sse = require('./sse');
 const webSocket = require('./socket');
+const checkAuction = require('./checkAuction');
 
 const app = express();
 sequelize.sync();
 passportConfig(passport);
+checkAuction();     // checkAuction을 서버에 연결합니다. 서버를 재시작하면 앞으로 서버를 시작할 때마다 낙찰자를 지정하는 작업을 수행합니다.
 
 const sessionMiddleware = session({
     resave: false,
