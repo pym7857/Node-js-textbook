@@ -6,7 +6,6 @@ const History = require('../schemas/history');
 const Favorite = require('../schemas/favorite');
 
 const router = express.Router();
-
 /**
  * @google/maps 패키지로부터 구글 지도 클라이언트를 만드는 방법입니다.
  * createClient 메서드에 .env 파일로부터 키를 가져와서 속성값으로 넣어주면 됩니다.
@@ -16,9 +15,15 @@ const googleMapsClient = googleMaps.createClient({
     key: process.env.PLACES_API_KEY,
 });
 
-/* 메인화면을 보여주는 라우터 [ GET / ] */
-router.get('/', (req, res) => {
-    res.render('index');
+/* 메인화면(즐겨찾기된 장소조회)을 보여주는 라우터 [ GET / ] */
+router.get('/', async (req, res, next) => {
+    try {
+        const favorites = await Favorite.find({});
+        res.render('index', { results: favorites });
+    } catch (e) {
+        console.error(e);
+        next(e);
+    }
 });
 
 /* 검색어 자동완성 라우터 [ GET /autocomplete/:query ] */
