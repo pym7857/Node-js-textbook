@@ -1,2 +1,22 @@
-#!usr/bin/env node
-console.log('Hello CLI');   //  usr/bin/env에 등록된 node명령어로 이 파일을 실행하라.(리눅스, 맥일때 해당)(윈도우는 단순 주석으로 취급)
+#!/usr/bin/env node
+const readline = require('readline');   // 노드의 내장 모듈 
+
+const rl = readline.createInterface({
+    input: process.stdin,   // 콘솔 입력 
+    output: process.stdout, // 콘솔 출력 
+});
+
+const answerCallback = (answer) => {
+    if (answer === 'y') {
+        console.log('감사합니다.');
+        rl.close();
+    } else if (answer === 'n') {
+        console.log('죄송합니다.');
+        rl.close();
+    } else {
+        console.clear();
+        console.log('y 또는 n만 입력하세요.')
+        rl.question('예제가 재미있습니까? (y/n)', answerCallback);
+    }
+};
+rl.question('예제가 재미있습니까? (y/n)', answerCallback);
