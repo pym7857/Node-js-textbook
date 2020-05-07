@@ -2,5 +2,5 @@
 ### How to Run
 ```
 $ npm i -g
-$ cli
+$ cli (package.json "bin"의 key값)
 ```
