@@ -5,4 +5,4 @@
 # 2. npm start로 express서버 실행
 ```
 ### API
-Google Places API
+Google Places API 
