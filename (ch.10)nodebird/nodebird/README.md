@@ -1,5 +1,5 @@
 # node-bird
-### Composition
+### 구성 
 ```
 #server: Express
 #db    : Sequelize
